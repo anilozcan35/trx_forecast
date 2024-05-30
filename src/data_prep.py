@@ -68,20 +68,20 @@ for series in tqdm(ts):
     train_ts.append(train_series)
     test_ts.append(val_series)
 
-with open("./data/train", "wb") as file:
+with open("../data/train", "wb") as file:
     pickle.dump(train_ts, file)
 
-with open("./data/test", "wb") as file:
+with open("../data/test", "wb") as file:
     pickle.dump(test_ts, file)
 
 func = lambda trial: objective(trial, train_ts, test_ts)  #This is for to pass args into objective function
 study = optuna.create_study(directions=["minimize"])
 study.optimize(func, n_trials=1)  #func değişkeni optimize edilmek üzere yollanıyor.
 
-with open("./data/train", "rb") as file:
+with open("../data/train", "rb") as file:
     train_ts = pickle.load(file)
 
-with open("./data/test", "rb") as file:
+with open("../data/test", "rb") as file:
     test_ts = pickle.load(file)
 
 def fit_Lightgbm(train):

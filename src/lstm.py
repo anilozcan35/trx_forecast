@@ -71,6 +71,7 @@ def get_cat_preds(ts):
     if os.path.isfile(LSTM_PATH):
         print("if")
         lstm = RNNModel.load(LSTM_PATH)
+        print("lstm bitis")
         # with open(LSTM_PATH, 'rb') as f:
         #     my_model = pickle.load(f)
         transformer = Scaler()
@@ -80,6 +81,7 @@ def get_cat_preds(ts):
         lstm, transformer, train_transformed = model(ts)
 
     # predictionları al.
+    print("pred baslangıc")
     preds = lstm.predict(1, series=train_transformed)
     # inverse scaling
     preds = transformer.inverse_transform(preds)

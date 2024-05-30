@@ -22,7 +22,7 @@ def predict():
 
         # burada kayıtların database'e yazılması gerekecek.
 
-    return {"prediction": test_preds}
+    return {"prediction": "Prediction Triggered"}
 
 
 if __name__ == '__main__':

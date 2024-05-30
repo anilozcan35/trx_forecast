@@ -46,7 +46,7 @@ def lstm():
         lstm_predict = st.button("Predict LSTM")
         if lstm_predict:
             response = requests.post("http://localhost:5001/predict", json={"trigger": True})
-            print(response)
+            st.markdown(response)
 
 
 
