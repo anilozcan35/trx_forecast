@@ -1,4 +1,9 @@
 import os
+
+from darts.models import ExponentialSmoothing
+from darts.utils.utils import ModelMode, SeasonalityMode
+
+
 # Outlier sınırlarını belirleyen fonksyion
 def outlier_thresholds(dataframe, variable): # OUTLIER HESAPLAMAK İÇİN
     quartile1 = dataframe[variable].quantile(0.25) # EŞİKLER NORMALDE 0.25 ÜZERİNDEN YAPILIRDI NORMALDE PROBLEM BAZINDA UCUNDAN TIRAŞLAMAK İÇİN BÖYLE YAPIYORUZ.
@@ -119,4 +124,11 @@ pd.set_option('display.expand_frame_repr', False)
 # max_rows almamızı sağlar
 pd.set_option('display.max_rows', 5)
 
+def seperate_fit_pred(i, ts):
+    serie = ts
+    model = ExponentialSmoothing(trend=ModelMode.ADDITIVE, seasonal=SeasonalityMode.ADDITIVE)
+    model.fit(serie)
+    pred = model.predict(1)
+    return (i, ts.static_covariates["shop"].iloc[0].astype("int16"),
+            ts.static_covariates["item"].iloc[0].astype("int32"), pred.last_value())
 
