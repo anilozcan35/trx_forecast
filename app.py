@@ -20,7 +20,7 @@ def home():
 def pipeline():
     """Project System Design Page"""
     st.title('Project System Design')
-    st.image(image="./pipeline/SystemDesign.jpg",
+    st.image(image="./pipelineDesign/systemdesign.png",
              caption="Project System Design",
              #  width=200,
              use_column_width="auto"
@@ -69,35 +69,6 @@ def smoothing():
             st.markdown(response)
 
 
-def data():
-    """Dataset Information Page"""
-    st.title('Dataset Exploratory Data Analysis(EDA)')
-    tab1, tab2, tab3, tab4 = st.tabs(["Meta Data", "Preview", "Profile(Raw Data)", "Profile(Preprocess Data)"])
-
-    with tab1:
-        st.image(
-            image="https://storage.googleapis.com/kaggle-datasets-images/1732554/2832282/1be2ae7e0f1bc3983e65c76bfe3a436e/dataset-cover.jpg?t=2021-11-20-09-31-54",
-            caption="Body Performance Dataset from Kaggle",
-            width=200,
-            use_column_width="auto"
-            )
-        st.header("Meta Data")
-        data_metadata(file_path=DATA_FILE)
-        # st.page_link(page="http://www.google.com", label="Dataset Url: Kaggle", icon="🌎")
-
-    with tab2:
-        st.header("Data Preview")
-        data_preview(file_path=DATA_FILE)
-
-    with tab3:
-        st.header("Raw Data Profiling")
-        with open(file="data/profiling/RawDataProfilingReport.html", encoding="utf8") as p:
-            components.html(p.read(), height=4096, width=2160, scrolling=True)
-
-    with tab4:
-        st.header("Preprocess Data Profiling")
-        with open(file="data/profiling/PreprocessDataProfilingReport.html", encoding="utf8") as p:
-            components.html(p.read(), height=4096, width=2160, scrolling=True)
 
 
 def app_credits():
